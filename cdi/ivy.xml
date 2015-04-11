@@ -17,6 +17,7 @@
         <conf name="test-jbossas7-managed" visibility="private" description="This scope is for executing Arquillian tests on a managed JBoss AS 7 instance" extends="test"/>
         <conf name="test-jbossas7-remote" visibility="private" description="This scope is for executing Arquillian tests on a remote JBoss AS 7 instance" extends="test"/>
         <conf name="test-glassfish-embedded" visibility="private" description="This scope is for executing Arquillian tests in Embedded GlassFish" extends="test"/>
+        <conf name="test-wildfly" visibility="private" description="This scope is for executing Arquillian tests in Embedded GlassFish" extends="test"/>
     </configurations>
     <dependencies>
         <dependency org="org.jboss.spec" name="jboss-javaee-6.0" rev="${version.jboss_javaee6_spec}" conf="compile-only->compile(*)">
@@ -40,6 +41,12 @@
         <dependency org="org.jboss.jbossas" name="jboss-as-server" m:classifier="client" rev="${version.jbossas_6}" conf="test-jbossas6-remote->default(*)" transitive="false"/>
         <dependency org="org.jboss.jbossas" name="jboss-as-profileservice" m:classifier="client" rev="${version.jbossas_6}" conf="test-jbossas6-remote->default(*)"/>
 
+        <dependency org="org.wildfly" name="wildfly-arquillian-container-embedded"  rev="${version.wildfly}" conf="test-wildfly->default(*)"/>
+        <dependency org="org.wildfly" name="wildfly-embedded" rev="${version.wildfly}" conf="test-wildfly->default(*)"/>
+<!--
+		<dependency org="org.jboss.arquillian.container" name="arquillian-container-spi" rev="1.1.7.Final"/>        
+-->        
+
         <dependency org="org.jboss.as" name="jboss-as-arquillian-container-managed" rev="${version.jbossas_7}" conf="test-jbossas7-managed->default(*)"/>
         <dependency org="javax.enterprise" name="cdi-api" rev="${version.cdi_spec}" conf="test-jbossas7-managed->default(*)"/>
 
@@ -48,5 +55,7 @@
 
         <dependency org="org.jboss.arquillian.container" name="arquillian-glassfish-embedded-3" rev="${version.arquillian}" conf="test-glassfish-embedded->default(*)"/>
         <dependency org="org.glassfish.extras" name="glassfish-embedded-all" rev="${version.glassfish}" conf="test-glassfish-embedded->default(*)"/>
+        <dependency org="org.jboss.shrinkwrap.descriptors" name="shrinkwrap-descriptors-impl-javaee" rev="2.0.0-alpha-7" conf="test->default(*)" />
+        
     </dependencies>
 </ivy-module>
